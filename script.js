@@ -5,7 +5,8 @@ const authorText = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
-
+const body = document.getElementsByTagName("body")[0]
+console.log(body);
 // Spinner hiding/showing
 function loading() {
     loader.hidden = false;
@@ -15,6 +16,19 @@ function loading() {
 function doneLoading() {
     loader.hidden = true;
     quoteContainer.hidden = false;
+}
+
+let currBackgroundColor = '#d606d6';
+function rotateBackgroundColor() {
+    const rotate = {
+        '#314cc5': '#31c0c5',
+        '#31c0c5': '#41d606',
+        '#41d606': '#d66b06',
+        '#d66b06': '#d606d6',
+        '#d606d6': '#314cc5',
+    }
+    currBackgroundColor = rotate[currBackgroundColor];
+    body.style.backgroundColor = currBackgroundColor;
 }
 
 // Storage for api quotes
@@ -43,6 +57,7 @@ function newQuote() {
     } else {
         quoteText.classList.remove('long-quote');
     }
+    rotateBackgroundColor();
     doneLoading();
 }
 
